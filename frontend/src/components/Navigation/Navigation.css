@@ -114,3 +114,43 @@ li>a{
 .about{
     margin-left: 30px;
 }
+
+.profile-dropdown{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+
+}
+
+.profile-dropdown > li {
+    list-style-type: none;
+    color: #FF7700;
+    margin-right: 15px;
+}
+
+.profile-dropdown > li:hover{
+    cursor:pointer;
+}
+
+.userWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logoutB{
+    background-color: whitesmoke;
+    border:none;
+    border-radius: 7px;
+    padding: 10px;
+    border: solid rgba(0,0,0,0) 1px;
+    transition: all 0.5s;
+    box-sizing: border-box;
+}
+
+.logoutB:hover{
+    color: whitesmoke;
+    background-color: #333;
+    border: solid whitesmoke 1px;
+    cursor:pointer;
+}
