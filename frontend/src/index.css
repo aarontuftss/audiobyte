@@ -14,13 +14,3 @@ body{
     font-family: arial;
 }
 
-.logo{
-    height: 25px;
-    width: 25px;
-    margin-right: 5px;
-}
-
-.logoDiv{
-    display:flex;
-    align-items:center;
-}

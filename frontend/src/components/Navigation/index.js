@@ -17,28 +17,40 @@ function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/login" className='authB'>Log In</NavLink>
+                <NavLink to="/signup" className='authB2'>Sign Up</NavLink>
             </>
         );
     }
 
     return (
         <div className='navBar'>
-            <ul className='navUl'>
-                <li>
-                    <NavLink exact to="/" className='logoDiv'><img src={logo} className='logo'></img>SoundTube</NavLink>
-                </li>
-            </ul>
-            <div className='searchBar'>
-                <input className="search" type="text" placeholder="Search"></input>
-                <img src={searchIcon}></img>
+            <div className='navDivs'>
+                <ul className='navUl'>
+                    <li>
+                        <NavLink exact to="/" className='logoDiv'><img src={logo} className='logo'></img>SoundTube</NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/" className='about'>About</NavLink>
+                    </li>
+                </ul>
             </div>
-            <ul className='navUl'>
-                <li>
-                    {isLoaded && sessionLinks}
-                </li>
-            </ul>
+
+            <div className='navDivs'>
+                <div className='searchBar'>
+                    <input className="search" type="text" placeholder="Search"></input>
+                    <img src={searchIcon}></img>
+                </div>
+            </div>
+
+            <div className='navDivs'>
+                <ul className='navUl'>
+                    <li>
+                        {isLoaded && sessionLinks}
+                    </li>
+                </ul>
+            </div>
+
         </div>
     );
 }
