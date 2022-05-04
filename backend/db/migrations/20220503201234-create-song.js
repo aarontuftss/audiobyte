@@ -14,7 +14,7 @@ module.exports = {
       },
       artistId: {
         allowNull: false,
-        reference: {model: 'Users'},
+        references: {model: 'Users'},
         type: Sequelize.INTEGER
       },
       image: {

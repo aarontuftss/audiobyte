@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     artistId: {
       type: DataTypes.INTEGER,
+      references: {model: 'Users'},
       allowNull: false
     },
     image: {
@@ -24,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Song.hasMany(models.Comment, { foreignKey: "songId" });
     Song.hasMany(models.Like, { foreignKey: "songId" });
-    Song.hasMany(models.Comment, { foreignKey: "songId" });
+    Song.belongsTo(models.User, { foreignKey: "artistId" });
   };
 
   Song.getAll = async function ( id ){
