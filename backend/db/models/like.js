@@ -19,5 +19,15 @@ module.exports = (sequelize, DataTypes) => {
     Like.belongsTo(models.User, { foreignKey: "userId" });
     Like.belongsTo(models.Song, { foreignKey: "songId" });
   };
+
+  Like.getUserLikes = async function (id){
+    return await Like.findAll({
+      where: {userId: id}
+      include: [User, Song],
+      order: [["createdAt", "ASC"]]
+    })
+  }
+
+
   return Like;
 };

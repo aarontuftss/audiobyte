@@ -28,8 +28,18 @@ module.exports = (sequelize, DataTypes) => {
     Song.belongsTo(models.User, { foreignKey: "artistId" });
   };
 
-  Song.getAll = async function ( id ){
+  Song.getAll = async function (){
+    return await Song.findAll({
+      include: [User, Comment, Like],
+      order: [["createdAt", "ASC"]]
+    })
+  }
 
+  Song.getOne = async function ( id ){
+    return await Song.findAll({
+      where: {id: id},
+      include: [User, Comment, Like]
+    })
   }
 
   return Song;
