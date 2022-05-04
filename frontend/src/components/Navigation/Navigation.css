@@ -72,6 +72,11 @@ li>a{
 .logoDiv{
     display:flex;
     align-items:center;
+    transition: all 0.5s;
+}
+
+.logoDiv:hover{
+    color: #FF7700;
 }
 
 .authB{
@@ -153,4 +158,13 @@ li>a{
     background-color: #333;
     border: solid whitesmoke 1px;
     cursor:pointer;
+}
+
+.about{
+    transition: all 0.5s;
+}
+
+.about:hover{
+    cursor:pointer;
+    color: #FF7700;
 }
