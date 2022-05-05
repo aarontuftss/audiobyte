@@ -11,6 +11,23 @@
     justify-content: space-between;
 }
 
+.uploadLink{
+    box-sizing: border-box;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border: solid white 1px;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+.uploadLink:hover{
+    /* background-color: white; */
+    color: #FF7700;
+    border: solid #FF7700 1px
+}
+
+
 .navUl{
     color: white;
     display:flex;

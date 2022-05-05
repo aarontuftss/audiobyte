@@ -24,7 +24,8 @@ function SongItem(props) {
             <div className='songWrap'>
                {props.song.Comments.map((comment)=>{
                    return <p key={comment.id}>{comment.text}</p>
-               })}
+                })}
+                <input type='text'></input><button onClick={console.log()}>Comment</button>
             </div>
         </div>
     );

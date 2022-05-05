@@ -36,6 +36,9 @@ function App() {
           <Route exact path="/home">
             <HomeFeed />
           </Route>
+          <Route exact path="/upload">
+            <HomeFeed />
+          </Route>
         </Switch>
       )}
     </>
