@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {model: 'Users'},
       type: DataTypes.INTEGER
-    }
+    },
     songId: {
       type: DataTypes.INTEGER,
       references: {model: 'Songs'},
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Like.getUserLikes = async function (id){
     return await Like.findAll({
-      where: {userId: id}
+      where: {userId: id},
       include: [User, Song],
       order: [["createdAt", "ASC"]]
     })

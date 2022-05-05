@@ -1,5 +1,6 @@
 'use strict';
 const { Validator } = require('sequelize');
+const {User, Like, Comment} = require('../models')
 
 module.exports = (sequelize, DataTypes) => {
   const Song = sequelize.define('Song', {
@@ -30,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Song.getAll = async function (){
     return await Song.findAll({
-      include: [User, Comment, Like],
+      include: [{ model: db.User},{model: db.Comment}, {model: db.Like}],
       order: [["createdAt", "ASC"]]
     })
   }
