@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Splash from './components/SplashPage'
 import './index.css'
 import HomeFeed from './components/HomeFeed'
+import SongUpload from './components/SongUpload'
+import EditSong from './components/EditSong'
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +39,10 @@ function App() {
             <HomeFeed />
           </Route>
           <Route exact path="/upload">
-            <HomeFeed />
+            <SongUpload />
+          </Route>
+          <Route exact path="/edit/:id">
+            <EditSong />
           </Route>
         </Switch>
       )}

@@ -1,7 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const GET_SONGS = 'songs/getSongs'
-// const CREATE_SONG  = 'songs/create'
+const CREATE_SONG  = 'songs/create'
 // const UPDATE_SONG = 'songs/update'
 // const DELETE_SONG = 'songs/delete'
 
@@ -14,12 +14,57 @@ const load_songs = (songs) => {
     }
 }
 
+const create_songs = (song) => {
+    return {
+        type: CREATE_SONG,
+        song
+    }
+}
+
 export const loadSongs = () => async (dispatch) => {
     const response = await csrfFetch('/api/songs/')
     if(response.ok){
         const songs = await response.json();
         dispatch(load_songs(songs))
     }
+}
+
+
+export const createSong = ({name, artistId, image, songUrl}) => async(dispatch) => {
+    const response = await csrfFetch('/api/songs', {
+        method: 'POST',
+        body: JSON.stringify({
+            name,
+            artistId,
+            image,
+            songUrl,
+        })
+    })
+
+}
+
+export const updateSong = ({name, artistId, image, songUrl, id}) => async(dispatch) => {
+    const response = await csrfFetch(`/api/songs/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            name,
+            artistId,
+            image,
+            songUrl,
+        })
+    })
+}
+
+export const deleteSong = (id) => async (dispatch) =>{
+    const response = await csrfFetch(`/api/songs/${id}`, {
+        method: 'DELETE',
+        // body: JSON.stringify({
+        //     name,
+        //     artistId,
+        //     image,
+        //     songUrl,
+        // })
+    })
 }
 
 const songReducer = (state = initialState, action) => {
