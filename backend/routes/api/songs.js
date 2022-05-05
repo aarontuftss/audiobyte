@@ -25,7 +25,6 @@ router.get(
     `/:id(\\d+)`,
     asyncHandler(async (req, res) => {
         const id = req.params.id;
-        console.log(id)
         const song = await Song.findOne({
             where: {id: id},
             include: [{ model: User},{model: Comment}, {model: Like}],
@@ -33,6 +32,55 @@ router.get(
 
         return res.json({
             song,
+        });
+    }),
+)
+
+router.put(
+    `/:id(\\d+)`,
+    asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const song = await Song.findOne({
+            where: {id: id},
+            include: [{ model: User},{model: Comment}, {model: Like}],
+        });
+        if(song){
+            await song.update(req.body);
+            await song.save();
+            res.json(song)
+        }
+    }),
+)
+
+router.delete(
+    `/:id(\\d+)`,
+    asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const song = await Song.findOne({
+            where: {id: id},
+            include: [{ model: User},{model: Comment}, {model: Like}],
+        });
+        if(song){
+            await song.destroy();
+        }else{
+            res.json('could not find song')
+        }
+    }),
+)
+
+router.post(
+    '/',
+    asyncHandler(async (req, res) => {
+        const {name, artistId, image, songUrl} = req.body;
+        const newSong = await Song.create({
+            name, 
+            artistId, 
+            image, 
+            songUrl
+        });
+
+        return res.json({
+            newSong,
         });
     }),
 )

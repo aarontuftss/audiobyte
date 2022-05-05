@@ -23,4 +23,34 @@ router.get(
     }),
 );
 
+router.post(
+    '/',
+    asyncHandler(async (req, res) => {
+        const {userId, songId} = req.body;
+        const newLike = await Like.create({
+            userId,
+            songId
+        });
+
+        return res.json({
+            newLike,
+        });
+    }),
+)
+
+router.delete(
+    `/:id(\\d+)`,
+    asyncHandler(async (req, res) => {
+        const id = req.params.id;
+        const like = await Like.findOne({
+            where: {id: id},
+        });
+
+        if(like){
+            like.destroy()
+        }
+    }),
+)
+
+
 module.exports = router

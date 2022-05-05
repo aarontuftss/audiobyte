@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from './components/SplashPage'
 import './index.css'
+import HomeFeed from './components/HomeFeed'
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Splash />
+          </Route>
+          <Route exact path="/home">
+            <HomeFeed />
           </Route>
         </Switch>
       )}
