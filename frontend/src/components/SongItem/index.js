@@ -18,22 +18,22 @@ function SongItem(props) {
 
     const link = `/edit/${props.song.id}`
 
-    const deleteSong = () => {
-        dispatch(songActions.deleteSong(props.song.id))
-        return dispatch(songActions.loadSongs())
+    const deleteSong = async () => {
+        await dispatch(songActions.deleteSong(props.song.id))
+        .then(dispatch(()=> songActions.loadSongs()))
         // window.location.reload()
     }
 
-    const postComment = () => {
+    const postComment = async() => {
         const id = sessionUser.id
         const data = {
             userId: id,
             text: commentText,
             songId: props.song.id
         }
-        dispatch(commentActions.createComment(data))
-        dispatch(songActions.loadSongs())
         setCommentText('')
+        await dispatch(commentActions.createComment(data))
+        .then(()=> dispatch(songActions.loadSongs()))
     }
 
     return (

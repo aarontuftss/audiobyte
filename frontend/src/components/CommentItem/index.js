@@ -14,34 +14,37 @@ function CommentItem(props) {
     const [toEdit, setToEdit] = useState(true)
     const [commentText, setCommentText] = useState('')
 
-    const deleteComment = () => {
-        dispatch(commentActions.deleteComment(props.comment.id))
+    const deleteComment = async() => {
+        await dispatch(commentActions.deleteComment(props.comment.id))
         // window.location.reload()
-        return dispatch(songActions.loadSongs())
+        await dispatch(songActions.loadSongs())
     }
 
-    const postComment = () => {
+    const postComment = async() => {
         const id = sessionUser.id
         const data = {
             userId: id,
             text: commentText,
             songId: props.song.id
         }
-        dispatch(commentActions.createComment(data))
-        return dispatch(songActions.loadSongs())
+        setCommentText('')
+        await dispatch(commentActions.createComment(data))
+            .then(() => dispatch(songActions.loadSongs()))
     }
 
     const showModal = () => {
         setToEdit(!toEdit)
     }
 
-    const editComment = () => {
+    const editComment = async () => {
         const data = {
             text: commentText,
             id: props.comment.id
         }
-        dispatch(commentActions.updateComment(data))
-        return dispatch(songActions.loadSongs())
+        setCommentText('')
+        setToEdit(!toEdit)
+        await dispatch(commentActions.updateComment(data))
+        await dispatch(songActions.loadSongs())
     }
 
     return (
@@ -49,7 +52,7 @@ function CommentItem(props) {
             <p>{props.comment.text}</p>
             {isUser && (
                 <>
-                <div hidden={toEdit}><input type='text' onChange={(e) => setCommentText(e.target.value)}></input><button onClick={editComment}>Edit</button></div>
+                <div hidden={toEdit}><input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input><button onClick={editComment}>Edit</button></div>
                 <button onClick={showModal}>Edit Comment</button>
                 <button onClick={deleteComment}>Delete</button>
                 </>
