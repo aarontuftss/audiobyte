@@ -15,14 +15,14 @@ function HomeFeed() {
     const [isLoaded, setIsLoaded] = useState(false);
     
     useEffect(() => {
-        console.log('nope')
+        // console.log('nope')
         dispatch(songActions.loadSongs()).then(() => setIsLoaded(true));;
     }, [dispatch]);
     
     if (!sessionUser) return (
         <Redirect to="/" />
     );
-    console.log(songObjects.songs)
+    // console.log(songObjects.songs)
 
     return (
         <div className='mainWrap'>

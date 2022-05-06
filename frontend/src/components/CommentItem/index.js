@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
+import React, { useState } from 'react';
+// import * as sessionActions from '../../store/session';
 import * as songActions from '../../store/songs';
 import * as commentActions from '../../store/comments';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 import './CommentItem.css'
 
@@ -17,20 +17,20 @@ function CommentItem(props) {
     const deleteComment = async() => {
         await dispatch(commentActions.deleteComment(props.comment.id))
         // window.location.reload()
-        await dispatch(songActions.loadSongs())
+        .then(()=> dispatch(songActions.loadSongs()))
     }
 
-    const postComment = async() => {
-        const id = sessionUser.id
-        const data = {
-            userId: id,
-            text: commentText,
-            songId: props.song.id
-        }
-        setCommentText('')
-        await dispatch(commentActions.createComment(data))
-            .then(() => dispatch(songActions.loadSongs()))
-    }
+    // const postComment = async() => {
+    //     const id = sessionUser.id
+    //     const data = {
+    //         userId: id,
+    //         text: commentText,
+    //         songId: props.song.id
+    //     }
+    //     setCommentText('')
+    //     await dispatch(commentActions.createComment(data))
+    //         .then(() => dispatch(songActions.loadSongs()))
+    // }
 
     const showModal = () => {
         setToEdit(!toEdit)
