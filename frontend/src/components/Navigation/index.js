@@ -1,13 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import searchIcon from './search-icon2.png'
 import logo from './logo1.png'
+import * as sessionActions from '../../store/session';
+import { useDispatch } from 'react-redux';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch()
+
+     const demoLogin = (e) => {
+        e.preventDefault();
+        const demoData = {
+            credential: 'Demo-lition',
+            password: 'password'
+        }
+        dispatch(sessionActions.login(demoData))
+        return <Redirect to='/home'/>
+    }
+
 
     let sessionLinks;
     if (sessionUser) {
@@ -31,7 +45,9 @@ function Navigation({ isLoaded }) {
                         <NavLink exact to="/" className='logoDiv'><img src={logo} className='logo'></img>SoundTube</NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/" className='about'>About</NavLink>
+                        {!sessionUser && (
+                            <a className='about' onClick={demoLogin}>Demo User</a>
+                        )}
                     </li>
                 </ul>
             </div>

@@ -27,8 +27,7 @@ router.put(
     asyncHandler(async (req, res) => {
         const id = req.params.id;
         const comment = await Comment.findOne({
-            where: {id: id},
-            include: [{ model: User},{model: Comment}, {model: Like}],
+            where: {id: id}
         });
         if(comment){
             await comment.update(req.body);
@@ -43,8 +42,7 @@ router.delete(
     asyncHandler(async (req, res) => {
         const id = req.params.id;
         const comment = await Comment.findOne({
-            where: {id: id},
-            include: [{ model: User},{model: Comment}, {model: Like}],
+            where: {id: id}
         });
         if(comment){
             await comment.destroy();
@@ -52,6 +50,22 @@ router.delete(
         }else{
             res.json('could not find comment')
         }
+    }),
+)
+
+router.post(
+    '/',
+    asyncHandler(async (req, res) => {
+        const {text, userId, songId} = req.body;
+        const newComment = await Comment.create({
+            text,
+            userId, 
+            songId
+        });
+
+        return res.json({
+            newComment,
+        });
     }),
 )
 

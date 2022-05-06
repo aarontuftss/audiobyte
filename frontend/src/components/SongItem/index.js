@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { NavLink } from 'react-router-dom';
+import CommentItem from '../CommentItem'
+import * as commentActions from '../../store/comments';
 
 import './SongItem.css'
 
@@ -12,21 +14,26 @@ function SongItem(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const isUser = (sessionUser.id === props.song.artistId)
+    const [commentText, setCommentText] = useState('')
 
     const link = `/edit/${props.song.id}`
 
-    
-
-    // const songObjects = useSelector((state) => state.songs);
-
-    // useEffect(() => {
-    // dispatch(songActions.loadSongs());
-    // }, [dispatch]);
-
     const deleteSong = () => {
         dispatch(songActions.deleteSong(props.song.id))
-        // dispatch(songActions.loadSongs())
-        window.location.reload()
+        return dispatch(songActions.loadSongs())
+        // window.location.reload()
+    }
+
+    const postComment = () => {
+        const id = sessionUser.id
+        const data = {
+            userId: id,
+            text: commentText,
+            songId: props.song.id
+        }
+        dispatch(commentActions.createComment(data))
+        dispatch(songActions.loadSongs())
+        setCommentText('')
     }
 
     return (
@@ -35,9 +42,9 @@ function SongItem(props) {
             <AudioPlayer src={props.song.songUrl}/>
             <div className='songWrap'>
                {props.song.Comments.map((comment)=>{
-                   return <p key={comment.id}>{comment.text}</p>
+                   return <CommentItem key={comment.id} comment={comment} />
                 })}
-                <input type='text'></input><button onClick={console.log()}>Comment</button>
+                <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input><button onClick={postComment}>Comment</button>
             </div>
             {isUser && (
                 <>
