@@ -48,7 +48,7 @@ function EditSong() {
     return (
         <div className='mainWrap'>
             <div className='imgDisplay'>
-                <h1>Upload Your Track</h1>
+                <h1>Edit Your Track</h1>
                 <div className='formDiv'>
                     <form onSubmit={handleSubmit}>
                         <ul>
@@ -84,7 +84,7 @@ function EditSong() {
                             />
                         </label>
                         <br/>
-                        <button type="submit">Upload Song!</button>
+                        <button type="submit">Publish Edited Version</button>
                     </form>
                 </div>
             </div>

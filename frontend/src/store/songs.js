@@ -58,12 +58,6 @@ export const updateSong = ({name, artistId, image, songUrl, id}) => async(dispat
 export const deleteSong = (id) => async (dispatch) =>{
     const response = await csrfFetch(`/api/songs/${id}`, {
         method: 'DELETE',
-        // body: JSON.stringify({
-        //     name,
-        //     artistId,
-        //     image,
-        //     songUrl,
-        // })
     })
 }
 
