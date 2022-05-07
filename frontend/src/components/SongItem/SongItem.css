@@ -1,0 +1,116 @@
+.mainDiv{
+    width:100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 200px;
+    border: solid lightgrey 1px;
+    /* margin: 25px */
+}
+
+.mainLeft{
+    width: 70%;
+    border-right: solid lightgrey 1px;
+    padding: 10px
+}
+
+.mainRight{
+    width:30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height:100%;
+    max-height: 80%;
+}
+
+.commentItem{
+    overflow-y: scroll;
+    height:auto;
+    width:100%;
+}
+
+.placeComment{
+    /* height:20%; */
+    border-radius: 5px;
+    width:100%;
+    /* min-height:20% */
+}
+
+.placeComment > button { 
+    background-color: #333;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    border: solid whitesmoke 1px;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: whitesmoke;
+    transition: all 0.5s;
+}
+
+
+.placeComment > button:hover {
+    color: #FF7700;
+    border: solid #FF7700 1px;
+}
+
+
+.audioPlayer{
+   background-color: black;
+   border-radius: 7px;
+   margin: 5px;
+   color: #FF7700;
+   border: solid #ff7700 1px;
+   
+}
+
+.rhap_time {
+  color: #ff7700;
+}
+
+.rhap_progress-indicator{
+    background-color: #ff7700
+}
+
+.rhap_progress-filled{
+    background-color: #ff7700
+}
+
+.rhap_main_controls_button{
+    background-color: #ff7700;
+}
+
+.holder{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+}
+
+.holder > img {
+    height: 90px;
+    width: 90px;
+    border-radius: 5px;
+}
+
+.editLink{
+    color:black;
+    font-size: 10pt;
+    /* text-decoration: none; */
+}
+
+.deleteB{
+    color: #ff7700;
+    background-color: #333;
+    border-radius: 5px;
+    border: none;
+    margin-left: 25px;
+}
+
+.deleteB:hover{
+    cursor: pointer;
+}

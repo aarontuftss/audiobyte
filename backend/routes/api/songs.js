@@ -12,7 +12,7 @@ router.get(
     asyncHandler(async (req, res) => {
         const songs = await Song.findAll({
             include: [{ model: User},{model: Comment}, {model: Like}],
-            order: [["createdAt", "ASC"]]
+            order: [["createdAt", "DESC"]]
         });
 
         return res.json({

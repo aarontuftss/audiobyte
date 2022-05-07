@@ -20,8 +20,7 @@ function SongItem(props) {
 
     const deleteSong = async () => {
         await dispatch(songActions.deleteSong(props.song.id))
-        .then(dispatch(()=> songActions.loadSongs()))
-        // window.location.reload()
+        .then(dispatch( () => songActions.loadSongs()))
     }
 
     const postComment = async() => {
@@ -37,21 +36,31 @@ function SongItem(props) {
     }
 
     return (
-        <div className='mainWrap'>
-            <h2>"{props.song.name}" by {props.song.User.username}</h2>
-            <AudioPlayer src={props.song.songUrl}/>
-            <div className='songWrap'>
-               {props.song.Comments.map((comment)=>{
-                   return <CommentItem key={comment.id} comment={comment} />
-                })}
-                <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input><button onClick={postComment}>Comment</button>
+        <div className='mainDiv'>
+            <div className='mainLeft'>
+                <h2>"{props.song.name}" by {props.song.User.username}</h2>
+                <div className='holder'>
+                    <img src={props.song.image}></img>
+                    <AudioPlayer src={props.song.songUrl} className='audioPlayer'/>
+                </div>
+                {isUser && (
+                    <>
+                    <NavLink to={link} className='editLink'>Edit Song</NavLink>
+                    <button onClick={deleteSong} className='deleteB'>Delete</button>
+                    </>
+                )}
             </div>
-            {isUser && (
-                <>
-                <NavLink to={link} >Edit Song</NavLink>
-                <button onClick={deleteSong}>Delete</button>
-                </>
-            )}
+            <div className='mainRight'>
+                <div className='commentItem'>
+                    {props.song.Comments.map((comment)=>{
+                        return <CommentItem key={comment.id} comment={comment} className='comment'/>
+                    })}
+                </div>
+                <div className='placeComment'>
+                    <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
+                    <button onClick={postComment}>Comment</button>
+                </div>
+            </div>
         </div>
     );
 }

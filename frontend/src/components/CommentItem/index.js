@@ -11,7 +11,7 @@ function CommentItem(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const isUser = (sessionUser.id === props.comment.userId)
-    const [toEdit, setToEdit] = useState(true)
+    const [toEdit, setToEdit] = useState(false)
     const [commentText, setCommentText] = useState('')
 
     const deleteComment = async() => {
@@ -19,18 +19,6 @@ function CommentItem(props) {
         // window.location.reload()
         .then(()=> dispatch(songActions.loadSongs()))
     }
-
-    // const postComment = async() => {
-    //     const id = sessionUser.id
-    //     const data = {
-    //         userId: id,
-    //         text: commentText,
-    //         songId: props.song.id
-    //     }
-    //     setCommentText('')
-    //     await dispatch(commentActions.createComment(data))
-    //         .then(() => dispatch(songActions.loadSongs()))
-    // }
 
     const showModal = () => {
         setToEdit(!toEdit)
@@ -48,13 +36,22 @@ function CommentItem(props) {
     }
 
     return (
-        <div className='mainWrap'>
-            <p>{props.comment.text}</p>
-            {isUser && (
+        <div className='hi'>
+            <div className='c-box'>
+                <p className='c-text'>{props.comment.text}</p>
+                {isUser &&(
+                    <>
+                    <button onClick={showModal}>Edit</button>
+                    <button onClick={deleteComment}>Delete</button>
+                    </>
+                )}
+            </div>
+            {isUser && toEdit && (
                 <>
-                <div hidden={toEdit}><input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input><button onClick={editComment}>Edit</button></div>
-                <button onClick={showModal}>Edit Comment</button>
-                <button onClick={deleteComment}>Delete</button>
+                <div className='editBox'>
+                    <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
+                    <button onClick={editComment}>Edit</button>
+                </div>
                 </>
             )}
         </div>

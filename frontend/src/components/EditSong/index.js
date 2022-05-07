@@ -17,18 +17,23 @@ function EditSong() {
     const [errors, setErrors] = useState([]);
     const userId = sessionUser.id
 
+    
+    const songUrlRegex = new RegExp ('(https:|http:).*(\.mp3)')
+    const imageUrlRegex = new RegExp ('(https:|http:).*(\.jpg)')
+
 
     if (!sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
-        const url1 = imageUrl.split('.')
-        const url2 = songUrl.split('.')
+        const url1 = imageUrl
+        const url2 = songUrl
+        
         e.preventDefault();
-        if (url1[url1.length -1] !== 'jpeg') {
-            setErrors(['please use valid .jpeg url'])
+        if (!imageUrlRegex.test(url1)) {
+            setErrors(['please use valid .jpg url'])
             return
         }
-        if (url2[url2.length -1] !== 'mp3') {
+        if (!songUrlRegex.test(url2)) {
             setErrors(['please use valid .mp3 url'])
             return
         }

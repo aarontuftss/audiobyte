@@ -59,6 +59,11 @@ export const deleteSong = (id) => async (dispatch) =>{
     const response = await csrfFetch(`/api/songs/${id}`, {
         method: 'DELETE',
     })
+    // const response1 = await csrfFetch('/api/songs/')
+    // if(response1.ok){
+    //     const songs = await response1.json();
+    //     dispatch(load_songs(songs))
+    // }
 }
 
 const songReducer = (state = initialState, action) => {

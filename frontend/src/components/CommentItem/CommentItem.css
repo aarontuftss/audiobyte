@@ -1,0 +1,71 @@
+.c-text{
+    /* width:90%; */
+    color: white;
+    padding: 2px;
+    margin: 0px;
+}
+
+.c-box{
+    display:flex;
+    padding:0.5px;
+    flex-direction:row;
+    align-items:center;
+    width:100%;
+    justify-content: center;
+    background-color: #333;
+    border-radius:5px;
+    /* height: 100%; */
+}
+
+.hi{
+    max-height: 30px;
+    margin-bottom: 25px;
+}
+
+.c-box > button{
+    height: 100%;
+    border-radius:7px;
+    border: solid white 0.5px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    background-color: whitesmoke;
+    transition: all 0.5s;
+}
+
+.c-box > button:hover{
+    border: solid white 0.5px;
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.editBox{
+    height: 100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    margin:5px
+}
+
+
+.editBox > button {
+    background-color: #333;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: solid #333 1px;
+    padding: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
+    color: #FF7700;
+    box-sizing: border-box;
+    transition: all 0.5s;
+}
+
+.editBox > button:hover{
+    cursor:pointer;
+    background-color: whitesmoke;
+    color: black;
+    border: solid #333 1px;
+
+}
+

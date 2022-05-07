@@ -26,11 +26,9 @@ function HomeFeed() {
 
     return (
         <div className='mainWrap'>
-            <div className='songWrap'>
-                {isLoaded && songObjects.songs.map((song)=>{
-                    return <SongItem key={song.id} song={song}/>
-                })}
-            </div>
+            {isLoaded && songObjects.songs.map((song)=>{
+                return <SongItem key={song.id} song={song}/>
+            })}
         </div>
     );
 }
