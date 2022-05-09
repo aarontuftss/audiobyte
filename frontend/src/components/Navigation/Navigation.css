@@ -9,6 +9,7 @@
     align-items: center;
     overflow-y: none;
     justify-content: space-between;
+    z-index: 5;
 }
 
 .uploadLink{

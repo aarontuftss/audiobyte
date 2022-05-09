@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+// import * as sessionActions from "../../store/session";
 import './SongUpload.css';
 import * as songActions from "../../store/songs";
 
@@ -35,6 +35,15 @@ function SongUpload() {
         }
         if (!songUrlRegex.test(url2)) {
             setErrors(['please use valid .mp3 url'])
+            return
+        }
+
+        if(imageUrl === '' || songUrl === '' || name === ''){
+            window.alert('Cannot Leave Any Form Items Blank')
+            return
+        }
+        if (name.split('').length > 100){
+            setErrors(['Song Name Must Be Shorter Than 100 Characters'])
             return
         }
         const data = {

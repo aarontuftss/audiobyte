@@ -10,6 +10,7 @@ import './index.css'
 import HomeFeed from './components/HomeFeed'
 import SongUpload from './components/SongUpload'
 import EditSong from './components/EditSong'
+import TrendingSongs from './components/TrendingSongs'
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/edit/:id">
             <EditSong />
+          </Route>
+          <Route exact path="/trending">
+            <TrendingSongs />
           </Route>
         </Switch>
       )}

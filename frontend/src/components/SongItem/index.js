@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
+import React, { useState } from 'react';
+// import * as sessionActions from '../../store/session';
 import * as songActions from '../../store/songs';
 import { useDispatch, useSelector } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
@@ -20,11 +20,20 @@ function SongItem(props) {
 
     const deleteSong = async () => {
         await dispatch(songActions.deleteSong(props.song.id))
-        .then(dispatch( () => songActions.loadSongs()))
+        .then(dispatch(songActions.loadSongs()))
+        .then(dispatch(songActions.loadSongs()))
     }
 
     const postComment = async() => {
         const id = sessionUser.id
+        if(commentText === ''){
+            window.alert('Cannot Leave Blank Comment')
+            return
+        }
+        if(commentText.split('').length > 100) {
+            window.alert('Comment Cannot Be Longer Than 100 Characters')
+            return
+        }
         const data = {
             userId: id,
             text: commentText,
@@ -40,7 +49,7 @@ function SongItem(props) {
             <div className='mainLeft'>
                 <h2>"{props.song.name}" by {props.song.User.username}</h2>
                 <div className='holder'>
-                    <img src={props.song.image}></img>
+                    <img src={props.song.image} alt={props.song.name}></img>
                     <AudioPlayer src={props.song.songUrl} className='audioPlayer'/>
                 </div>
                 {isUser && (

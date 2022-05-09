@@ -37,6 +37,14 @@ function EditSong() {
             setErrors(['please use valid .mp3 url'])
             return
         }
+        if(imageUrl === '' || songUrl === '' || name === ''){
+            window.alert('Cannot Leave Any Form Items Blank')
+            return
+        }
+        if (name.split('').length > 100){
+            setErrors(['Song Name Must Be Shorter Than 100 Characters'])
+            return
+        }
         const data = {
             name: name,
             artistId: userId,

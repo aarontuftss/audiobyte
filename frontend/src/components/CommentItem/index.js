@@ -25,6 +25,14 @@ function CommentItem(props) {
     }
 
     const editComment = async () => {
+        if(commentText === ''){
+            window.alert('Cannot Leave Blank Comment')
+            return
+        }
+        if(commentText.split('').length > 100) {
+            window.alert('Comment Cannot Be Longer Than 100 Characters')
+            return
+        }
         const data = {
             text: commentText,
             id: props.comment.id
