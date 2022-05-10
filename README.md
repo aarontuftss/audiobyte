@@ -7,7 +7,8 @@ Comment, upload & make new connections!
 
 <a href='https://sound-tube.herokuapp.com/'>Visit Live Demo</a>
 
-<img width="1280" alt="Screen Shot 2022-05-08 at 1 04 04 PM" src="https://user-images.githubusercontent.com/86862338/167311740-b7ef4e44-c828-4934-98e4-ab086e4d5e6b.png">
+<img width="1280" alt="Screen Shot 2022-05-10 at 10 10 15 AM" src="https://user-images.githubusercontent.com/86862338/167674050-a5ed219c-0a57-4b66-be89-e26c156a87d0.png">
+
 
 
 ## SoundTube Allows Users To Upload, Share, and Discover New Music
