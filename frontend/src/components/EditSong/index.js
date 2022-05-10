@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect , useHistory} from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import * as songActions from "../../store/songs";
 
@@ -16,6 +16,13 @@ function EditSong() {
     const [songUrl, setSongUrl] = useState("");
     const [errors, setErrors] = useState([]);
     const userId = sessionUser.id
+    let history = useHistory()
+
+    let song;
+    
+    // useEffect(() => {
+    //     console.log(store.songs)
+    // }, []);
 
     
     const songUrlRegex = new RegExp ('(https:|http:).*(\.mp3)')
@@ -52,10 +59,12 @@ function EditSong() {
             songUrl: songUrl,
             id: id
         }
-        console.log(data)
+        // console.log(data)
 
         dispatch(songActions.updateSong(data))
-        window.location.assign("/home")
+        // window.location.assign("/home")
+        history.push('/home')
+
     };
 
     return (

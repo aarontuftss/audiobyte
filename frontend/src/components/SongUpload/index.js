@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import './SongUpload.css';
 import * as songActions from "../../store/songs";
@@ -14,6 +14,7 @@ function SongUpload() {
     const [songUrl, setSongUrl] = useState("");
     const [errors, setErrors] = useState([]);
     const userId = sessionUser.id
+    let history = useHistory()
 
     const songUrlRegex = new RegExp ('(https:|http:).*(\.mp3)')
     const imageUrlRegex = new RegExp ('(https:|http:).*(\.jpg)')
@@ -55,7 +56,9 @@ function SongUpload() {
         console.log(data)
 
         dispatch(songActions.createSong(data))
-        window.location.assign("/home")
+        .then( () => dispatch(songActions.loadSongs()))
+        // window.location.assign("/home")
+        history.push('/home')
     };
 
     return (
