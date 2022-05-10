@@ -29,3 +29,28 @@ Comment, upload & make new connections!
 * Express
 * HTML
 * CSS
+
+<hr>
+
+# Getting Started
+
+### Clone This Repository
+
+* git clone git@github.com:jonathontufts/soundcloud-clone.git
+
+### NPM Install all Dependencies 
+
+* cd frontend -> npm install
+* cd backend -> npm install
+
+### DB Setup 
+
+* Setup a database & user and put variables in a .env file 
+* Migrate & seed data
+
+### Start Project 
+
+* Npm start in both the frontent & backend directories 
+* Site should be hosted on localhost port #3000
+
+
