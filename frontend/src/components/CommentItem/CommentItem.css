@@ -1,5 +1,5 @@
 .c-text{
-    /* width:90%; */
+    /* width:25vw; */
     color: white;
     padding: 2px;
     margin: 0px;
@@ -10,7 +10,7 @@
     padding:0.5px;
     flex-direction:row;
     align-items:center;
-    width:100%;
+    width:80%;
     justify-content: center;
     background-color: #333;
     border-radius:5px;

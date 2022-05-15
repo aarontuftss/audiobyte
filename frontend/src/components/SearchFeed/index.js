@@ -30,7 +30,7 @@ function SearchFeed() {
     );
 
     return (
-        <>]
+        <>
             <div className='tWrap'>
                 {isLoaded && (<h1>Results for: '{window.location.href.split('/').pop().replaceAll('%20', ' ')}'</h1>)}
                 {isLoaded && deezerObjects.data.map((song)=>{
