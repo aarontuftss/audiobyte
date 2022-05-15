@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import songReducer from './songs'
 import commentReducer from './comments'
+import deezerReducer from './deezer'
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   songs: songReducer,
   comments: commentReducer,
+  deezer: deezerReducer
 });
 
 let enhancer;

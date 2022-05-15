@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import React, {useState} from 'react';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
+    const history = useHistory()
+    const [searchQ, setSearchQ] = useState('')
 
      const demoLogin = (e) => {
         e.preventDefault();
@@ -37,6 +39,13 @@ function Navigation({ isLoaded }) {
         );
     }
 
+    function search(){
+        let searchItem = searchQ
+        // setSearchQ('')
+        history.push(`/search/${searchItem}`)
+        window.location.reload()
+    }
+
     return (
         <div className='navBar'>
             <div className='navDivs'>
@@ -54,8 +63,8 @@ function Navigation({ isLoaded }) {
 
             <div className='navDivs'>
                 <div className='searchBar'>
-                    <input className="search" type="text" placeholder="Search"></input>
-                    <img src={searchIcon}></img>
+                    <input className="search" type="text" placeholder="Search" onChange={(e)=> {setSearchQ(e.target.value)}}></input>
+                    <img src={searchIcon} onClick={search}></img>
                 </div>
             </div>
 

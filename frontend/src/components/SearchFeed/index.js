@@ -8,35 +8,37 @@ import SongItem from '../SongItem'
 import TrendSongItem from '../TrendSongItem'
 
 
+
 // import './HomeFeed.css';
 
-function TrendingSongs() {
+function SearchFeed() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const songObjects = useSelector((state) => state.songs);
     const deezerObjects = useSelector((state) => state.deezer)
     const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        // console.log('nope')
-        dispatch(deezerActions.getTending()).then(() => setIsLoaded(true));
-    }, [dispatch]);
     
+    useEffect(() => {
+        let query = window.location.href.split('/')
+        query = query[query.length - 1]
+        // console.log('nope')
+        dispatch(deezerActions.getSearch(query)).then(() => setIsLoaded(true));
+    }, [dispatch]);
     
     if (!sessionUser) return (
         <Redirect to="/" />
     );
 
     return (
-        <>
-            <h1>Top Worldwide</h1>
+        <>]
             <div className='tWrap'>
-                {isLoaded && deezerObjects.tracks.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song = {song}></TrendSongItem>
+                {isLoaded && (<h1>Results for: '{window.location.href.split('/').pop().replaceAll('%20', ' ')}'</h1>)}
+                {isLoaded && deezerObjects.data.map((song)=>{
+                    return <TrendSongItem key={song.id} song={song}></TrendSongItem>
                 })}
             </div>
         </>
     );
 }
 
-export default TrendingSongs;
+export default SearchFeed;

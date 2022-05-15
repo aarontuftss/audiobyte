@@ -11,6 +11,7 @@ import HomeFeed from './components/HomeFeed'
 import SongUpload from './components/SongUpload'
 import EditSong from './components/EditSong'
 import TrendingSongs from './components/TrendingSongs'
+import SearchFeed from './components/SearchFeed'
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route exact path="/trending">
             <TrendingSongs />
+          </Route>
+          <Route exact path="/search/:query">
+            <SearchFeed />
           </Route>
         </Switch>
       )}
