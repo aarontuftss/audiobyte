@@ -26,8 +26,12 @@ function TrendSongItem(props) {
                     <AudioPlayer src={props.song.preview} className='audioPlayer'/>
                 </div>
             </div>
-            {/* <div className='mainRight'>
-                <div className='commentItem'>
+            <div className='mainRight'>
+                <h3>Album: {props.song.album.title}</h3>
+                <img src={props.song.album['cover_small']} alt='id'></img>
+                <h4>Presented by {props.song.artist.name}</h4>
+                
+                {/* <div className='commentItem'>
                     {props.song.Comments.map((comment)=>{
                         return <CommentItem key={comment.id} comment={comment} className='comment'/>
                     })}
@@ -35,8 +39,8 @@ function TrendSongItem(props) {
                 <div className='placeComment'>
                     <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
                     <button onClick={postComment}>Comment</button>
-                </div>
-            </div> */}
+                </div> */}
+            </div>
         </div>
     );
 }

@@ -18,7 +18,7 @@ function ProfileButton({ user }) {
     return (
         <>
             <div className='userWrap'>
-                <NavLink exact to='/upload' className='uploadLink'>Upload</NavLink>
+                {/* <NavLink exact to='/upload' className='uploadLink'>Upload</NavLink> */}
                 {showMenu && (
                     <ul className="profile-dropdown">
                         <li>{user.username}</li>

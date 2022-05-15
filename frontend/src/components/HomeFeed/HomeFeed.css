@@ -3,3 +3,32 @@ body{
     width: 100%
 }
 
+.feedSelector {
+    position: sticky;
+    top:8vh;
+    height: 8vh;
+    z-index:15;
+    background-color: whitesmoke;
+    border-bottom: solid black 1px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.selected{
+    border: solid #FF7700 1px;
+    color:#FF7700;
+    list-style: dot;
+}
+
+.feedSelector > button {
+    margin-left: 40px;
+    margin-right:40px;
+    background-color:whitesmoke;
+    /* padding:15px; */
+    border:none;
+    font-size: 13pt;
+}
+
+.feedSelector > button:hover {
+    cursor:pointer;
+}

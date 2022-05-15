@@ -51,11 +51,16 @@ function Navigation({ isLoaded }) {
             <div className='navDivs'>
                 <ul className='navUl'>
                     <li>
-                        <NavLink exact to="/" className='logoDiv'><img src={logo} className='logo'></img>SoundTube</NavLink>
+                        <NavLink exact to="/" className='logoDiv'><img src={logo} className='logo'></img>AudioByte</NavLink>
                     </li>
                     <li>
                         {!sessionUser && (
                             <a className='about' onClick={demoLogin}>Demo User</a>
+                        )}
+                    </li>
+                    <li>
+                        {sessionUser && (
+                            <NavLink exact to='/upload' className='uploadLink'>Upload</NavLink>
                         )}
                     </li>
                 </ul>
