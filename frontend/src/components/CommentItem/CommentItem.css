@@ -36,6 +36,7 @@
     border: solid white 0.5px;
     background-color: #333;
     color: whitesmoke;
+    cursor:pointer;
 }
 
 .editBox{
@@ -58,6 +59,7 @@
     padding-left: 4px;
     color: #FF7700;
     box-sizing: border-box;
+    cursor:pointer;
     transition: all 0.5s;
 }
 
