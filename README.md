@@ -24,13 +24,13 @@ Comment, upload & make new connections!
 <img width="1280" alt="Screen Shot 2022-05-15 at 7 09 20 PM" src="https://user-images.githubusercontent.com/86862338/168503569-75cbae6a-acef-44c0-9d31-2127138cf926.png">
 
 
-# User upload feed with comment 
+# User upload feed with live comments
 <img width="1279" alt="Screen Shot 2022-05-15 at 7 10 25 PM" src="https://user-images.githubusercontent.com/86862338/168503647-5bb29528-275b-4eed-a7a4-f1d705414774.png">
 
 
 ### AudioByte was built with
 
-* React.js
+* React
 * Redux
 * Javascript
 * PostgreSQL
