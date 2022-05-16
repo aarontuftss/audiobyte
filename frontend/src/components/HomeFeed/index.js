@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import SongItem from '../SongItem';
 import TrendSongItem from '../TrendSongItem';
 import * as deezerActions from '../../store/deezer';
+// import WaveFormLocal from '../WaveFormLocal';
 
 
 import './HomeFeed.css';

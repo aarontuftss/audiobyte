@@ -7,6 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { NavLink } from 'react-router-dom';
 import CommentItem from '../CommentItem'
 import * as commentActions from '../../store/comments';
+import WaveFormLocal from '../WaveFormLocal'
 
 import './SongItem.css'
 
