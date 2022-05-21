@@ -10,7 +10,7 @@ import TrendSongItem from '../TrendSongItem'
 
 // import './HomeFeed.css';
 
-function TrendingSongs() {
+function TrendingSongs(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const songObjects = useSelector((state) => state.songs);
@@ -32,7 +32,7 @@ function TrendingSongs() {
             <h1>Top Worldwide</h1>
             <div className='tWrap'>
                 {isLoaded && deezerObjects.tracks.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song = {song}></TrendSongItem>
+                    return <TrendSongItem key={song.id} song={song} getSong={props.getSong}></TrendSongItem>
                 })}
             </div>
         </>

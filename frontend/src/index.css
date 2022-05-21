@@ -21,3 +21,8 @@ body::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 
+.bottomPlayer{
+    position: sticky;
+    bottom: 0px;
+    z-index: 15;
+}

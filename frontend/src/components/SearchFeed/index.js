@@ -11,7 +11,7 @@ import TrendSongItem from '../TrendSongItem'
 
 // import './HomeFeed.css';
 
-function SearchFeed() {
+function SearchFeed(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const songObjects = useSelector((state) => state.songs);
@@ -34,7 +34,7 @@ function SearchFeed() {
             <div className='tWrap'>
                 {isLoaded && (<h1>Results for: '{window.location.href.split('/').pop().replaceAll('%20', ' ')}'</h1>)}
                 {isLoaded && deezerObjects.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song={song}></TrendSongItem>
+                    return <TrendSongItem key={song.id} song={song} getSong={props.getSong}/>
                 })}
             </div>
         </>

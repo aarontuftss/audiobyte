@@ -11,7 +11,7 @@ import * as deezerActions from '../../store/deezer';
 
 import './HomeFeed.css';
 
-function HomeFeed() {
+function HomeFeed(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const songObjects = useSelector((state) => state.songs);
@@ -58,10 +58,10 @@ function HomeFeed() {
         </div>
         <div className='mainWrap'>
             {isLoaded && displayLocal && songObjects.songs.map((song)=>{
-                return <SongItem key={song.id} song={song}/>
+                return <SongItem key={song.id} song={song} getSong = {props.getSong}/>
             })}
             {isLoaded && !displayLocal && deezerObjects.tracks.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song = {song}></TrendSongItem>
+                    return <TrendSongItem key={song.id} song = {song} setMainSong={props.setMainSong}></TrendSongItem>
             })}
         </div>
         </>
