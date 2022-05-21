@@ -46,6 +46,10 @@ function Navigation({ isLoaded }) {
         window.location.reload()
     }
 
+    function setFeed(key, value){
+        window.sessionStorage.setItem("feed", "value");
+    }
+
     return (
         <div className='navBar'>
             <div className='navDivs'>
@@ -68,8 +72,10 @@ function Navigation({ isLoaded }) {
 
             <div className='navDivs'>
                 <div className='searchBar'>
+                    <button onClick={()=> setFeed()}>User Songs</button>
                     <input className="search" type="text" placeholder="Search" onChange={(e)=> {setSearchQ(e.target.value)}}></input>
                     <img src={searchIcon} onClick={search}></img>
+                    <button onClick={()=> setFeed()}>Top WorldWide</button>
                 </div>
             </div>
 

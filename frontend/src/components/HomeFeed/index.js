@@ -61,7 +61,7 @@ function HomeFeed(props) {
                 return <SongItem key={song.id} song={song} getSong = {props.getSong}/>
             })}
             {isLoaded && !displayLocal && deezerObjects.tracks.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song = {song} setMainSong={props.setMainSong}></TrendSongItem>
+                return <TrendSongItem key={song.id} song={song} getSong={props.getSong}></TrendSongItem>
             })}
         </div>
         </>

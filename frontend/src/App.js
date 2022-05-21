@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
@@ -12,8 +12,6 @@ import SongUpload from './components/SongUpload'
 import EditSong from './components/EditSong'
 import TrendingSongs from './components/TrendingSongs'
 import SearchFeed from './components/SearchFeed'
-// import ReactJKMusicPlayer from 'react-jinke-music-player'
-// import 'react-jinke-music-player/assets/index.css'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -21,7 +19,9 @@ function App() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showPlayer, setShowPlayer] = useState(true)
+  const [showPlayer, setShowPlayer] = useState(true);
+
+
  
   
   useEffect(() => {
@@ -34,21 +34,8 @@ function App() {
     })
     .then(() => setIsLoaded(true));
   }, [dispatch]);
-
     
-    const audiolist = [{
-      cover: 'https://e-cdns-images.dzcdn.net/images/cover/ec3c8ed67427064c70f67e5815b74cef/56x56-000000-80-0-0.jpg',
-      musicSrc: 'https://cdns-preview-c.dzcdn.net/stream/c-cca63b2c92773d54e61c5b4d17695bd2-8.mp3',
-      name: 'hi',
-      singer: 'hi'
-      
-    }]
-    
-    const [mainSong, setMainSong] = useState(audiolist);
-
-    useEffect(() => {
-      console.log('on song change')
-    }, [mainSong]);
+    const [mainSong, setMainSong] = useState('');
 
     function getSong(){
       const item = JSON.parse(localStorage.getItem('song'));
