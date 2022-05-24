@@ -20,7 +20,9 @@ function App() {
   const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showPlayer, setShowPlayer] = useState(true);
-  const [feed, setFeed] = useState('user')
+  const [feed, setFeed] = useState('user');
+  const [query, setQuery] = useState('')
+  const [didSearch, setDidSearch] = useState(true)
 
   function feedChange(val){
     console.log(val)
@@ -53,10 +55,17 @@ function App() {
     getSong()
   }, []);
 
+  function refreshSearch(val){
+    setDidSearch(!didSearch)
+    setQuery(val)
+  }
+
+  
+
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} feedChange={feedChange} feed={feed} className='navBar'/>
+      <Navigation isLoaded={isLoaded} feedChange={feedChange} feed={feed} refresh={refreshSearch} className='navBar'/>
       {isLoaded && (
         <Switch>
           <Route exact path="/login">
@@ -80,14 +89,14 @@ function App() {
           <Route exact path="/trending">
             <TrendingSongs getSong={getSong}/>
           </Route>
-          <Route path="/search/">
-            <SearchFeed getSong={getSong}/>
+          <Route path="/search/:query">
+            <SearchFeed getSong={getSong} didSearch={didSearch} query={query}/>
           </Route>
         </Switch>
       )}
       {!isLoaded && (
         <>
-        <div className="loader"> Loading... </div>
+          <div className="loader"><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>
         </>
       )}
       {isLoaded && showPlayer && (

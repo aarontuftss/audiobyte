@@ -6,15 +6,18 @@ import './Navigation.css';
 import searchIcon from './search-icon2.png'
 import logo from './logo1.png'
 import * as sessionActions from '../../store/session';
+import * as deezerActions from '../../store/deezer';
 import { useDispatch } from 'react-redux';
 
-function Navigation({ isLoaded, feedChange, feed }) {
+function Navigation({ isLoaded, feedChange, feed, refresh }) {
     const sessionUser = useSelector(state => state.session.user);
+    const deezerObjects = useSelector((state) => state.deezer)
     const dispatch = useDispatch()
     const history = useHistory()
     const [searchQ, setSearchQ] = useState('')
     const [b1, setb1] = useState('bOn')
     const [b2, setb2] = useState('bOff')
+    const [didClick, setDidClick] = useState(true)
 
      const demoLogin = (e) => {
         e.preventDefault();
@@ -42,15 +45,18 @@ function Navigation({ isLoaded, feedChange, feed }) {
     }
 
     function search(){
-        let searchItem = searchQ
-        // setSearchQ('')
-        history.push(`/search/${searchItem}`)
-        window.location.reload()
+        const q = searchQ
+        // let searchItem = searchQ
+        // history.push(`/search/${searchItem}`)
+        // window.location.reload()
+        dispatch(deezerActions.getSearch(q))
     }
 
     useEffect(()=>{
-        console.log(b1,b2)
-    }, [b1,b2])
+        refresh(searchQ)
+        dispatch(deezerActions.getSearch(searchQ)).then(()=> history.push(`/search/${searchQ}`))
+        // history.push(`/search/${searchQ}`)
+    }, [didClick])
 
     function handleClick(val){
         if(val){
@@ -90,7 +96,7 @@ function Navigation({ isLoaded, feedChange, feed }) {
                     <button className={b1} onClick={()=> handleClick(true)}>User Songs</button>
                 <div className='searchBar'>
                     <input className="search" type="text" placeholder="Search" onChange={(e)=> {setSearchQ(e.target.value)}}></input>
-                    <Link to={'/search/'+searchQ}><img src={searchIcon}></img></Link>
+                    <img src={searchIcon} className='' onClick={()=> setDidClick(!didClick)}></img>
                 </div>
                 <button className={b1} onClick={() => handleClick(false)}>Top WorldWide</button>
             </div>
