@@ -20,7 +20,12 @@ function App() {
   const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showPlayer, setShowPlayer] = useState(true);
+  const [feed, setFeed] = useState('user')
 
+  function feedChange(val){
+    console.log(val)
+    setFeed(val)
+  }
 
  
   
@@ -44,10 +49,14 @@ function App() {
       }
     }
 
+  useEffect(() => {
+    getSong()
+  }, []);
+
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} className='navBar'/>
+      <Navigation isLoaded={isLoaded} feedChange={feedChange} feed={feed} className='navBar'/>
       {isLoaded && (
         <Switch>
           <Route exact path="/login">
@@ -60,7 +69,7 @@ function App() {
             <Splash />
           </Route>
           <Route exact path="/home">
-            <HomeFeed getSong={getSong}/>
+            <HomeFeed getSong={getSong} feed={feed}/>
           </Route>
           <Route exact path="/upload">
             <SongUpload />
@@ -71,10 +80,15 @@ function App() {
           <Route exact path="/trending">
             <TrendingSongs getSong={getSong}/>
           </Route>
-          <Route exact path="/search/:query">
+          <Route path="/search/">
             <SearchFeed getSong={getSong}/>
           </Route>
         </Switch>
+      )}
+      {!isLoaded && (
+        <>
+        <div className="loader"> Loading... </div>
+        </>
       )}
       {isLoaded && showPlayer && (
         // <ReactJKMusicPlayer audioLists={mainSong} autoPlay={false} toggleMode={false} mode='full' />

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { NavLink, Redirect, useHistory, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -8,11 +8,13 @@ import logo from './logo1.png'
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, feedChange, feed }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const history = useHistory()
     const [searchQ, setSearchQ] = useState('')
+    const [b1, setb1] = useState('bOn')
+    const [b2, setb2] = useState('bOff')
 
      const demoLogin = (e) => {
         e.preventDefault();
@@ -46,9 +48,23 @@ function Navigation({ isLoaded }) {
         window.location.reload()
     }
 
-    function setFeed(key, value){
-        window.sessionStorage.setItem("feed", "value");
+    useEffect(()=>{
+        console.log(b1,b2)
+    }, [b1,b2])
+
+    function handleClick(val){
+        if(val){
+            feedChange('user');
+            setb1('bOn');
+            setb2('bOff')
+        }else{
+            feedChange('top'); 
+            setb1('bOn'); 
+            setb2('bOff')
+        }
     }
+
+
 
     return (
         <div className='navBar'>
@@ -71,12 +87,12 @@ function Navigation({ isLoaded }) {
             </div>
 
             <div className='navDivs'>
+                    <button className={b1} onClick={()=> handleClick(true)}>User Songs</button>
                 <div className='searchBar'>
-                    <button onClick={()=> setFeed()}>User Songs</button>
                     <input className="search" type="text" placeholder="Search" onChange={(e)=> {setSearchQ(e.target.value)}}></input>
-                    <img src={searchIcon} onClick={search}></img>
-                    <button onClick={()=> setFeed()}>Top WorldWide</button>
+                    <Link to={'/search/'+searchQ}><img src={searchIcon}></img></Link>
                 </div>
+                <button className={b1} onClick={() => handleClick(false)}>Top WorldWide</button>
             </div>
 
             <div className='navDivs'>

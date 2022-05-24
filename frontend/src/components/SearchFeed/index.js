@@ -32,6 +32,7 @@ function SearchFeed(props) {
     return (
         <>
             <div className='tWrap'>
+                {!isLoaded && (<div className='loader'>Loading ... </div>)}
                 {isLoaded && (<h1>Results for: '{window.location.href.split('/').pop().replaceAll('%20', ' ')}'</h1>)}
                 {isLoaded && deezerObjects.data.map((song)=>{
                     return <TrendSongItem key={song.id} song={song} getSong={props.getSong}/>
