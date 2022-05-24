@@ -68,7 +68,7 @@ li>a{
     width: 20px;
 }
 
-.searchBar >img:hover{
+.searchBar > img:hover{
     cursor: pointer;
 }
 
@@ -126,13 +126,11 @@ li>a{
     background-color: #FF7700;
 }
 
-/* .navDivs{
-    width:33%;
+.navDivs{
     display:flex;
     flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
-} */
+
+}
 
 .about{
     margin-left: 30px;
@@ -185,4 +183,24 @@ li>a{
 .about:hover{
     cursor:pointer;
     color: #FF7700;
+}
+
+.bOn{
+    background-color: transparent;
+    font-size: 0.8rem;
+    border: none;
+    color: whitesmoke;
+    transition: all 0.5s;
+
+}
+
+.bOn:hover{
+    color: #FF7700;
+    cursor: pointer;
+}
+
+.bOff{
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
 }

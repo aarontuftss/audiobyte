@@ -45,8 +45,20 @@ function SongItem(props) {
         .then(()=> dispatch(songActions.loadSongs()))
     }
 
+    function setStorage(song){
+        const newS = {}
+        newS.cover = song.image
+        newS.musicSrc = song.songUrl
+        newS.name = song.name
+        newS.singer = song.User.username
+
+        localStorage.setItem('song', JSON.stringify(newS));
+        props.getSong()
+    }
+
     return (
         <div className='mainDiv'>
+            <button onClick={()=> setStorage(props.song)}>click</button>
             <div className='mainLeft'>
                 <h2>"{props.song.name}" by {props.song.User.username}</h2>
                 <div className='holder'>
