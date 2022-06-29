@@ -79,3 +79,19 @@ body{
 .commentHold > * {
     width: 100%;
 }
+
+.tWrap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    min-height: calc(100vh - 55px);
+    width: calc(100vw - 500px);
+}
+
+.songHolddd{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

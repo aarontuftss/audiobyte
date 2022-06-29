@@ -52,12 +52,15 @@ function Navigation({ isLoaded, feedChange, feed, refresh }) {
         // let searchItem = searchQ
         // history.push(`/search/${searchItem}`)
         // window.location.reload()
-        dispatch(deezerActions.getSearch(q))
+        dispatch(deezerActions.getSearch(searchQ))
+        .then(()=>{
+            history.push('/search')
+        })
     }
 
     useEffect(()=>{
-        refresh(searchQ)
-        // dispatch(deezerActions.getSearch(searchQ)).then(()=> history.push(`/search/${searchQ}`))
+        // refresh(searchQ)
+        // dispatch(deezerActions.getSearch(searchQ)).then(()=> history.push(`/search`))
         // history.push(`/search/${searchQ}`)
     }, [didClick])
 
@@ -99,7 +102,7 @@ function Navigation({ isLoaded, feedChange, feed, refresh }) {
                     <button className={b1} onClick={()=> handleClick(true)}>User Songs</button>
                 <div className='searchBar'>
                     <input className="search" type="text" placeholder="Search" onChange={(e)=> {setSearchQ(e.target.value)}}></input>
-                    <img src={searchIcon} className='' onClick={()=> setDidClick(!didClick)}></img>
+                    <img src={searchIcon} className='' onClick={(e)=> {search(); refresh(searchQ)}} alt=''></img>
                 </div>
                 <button className={b1} onClick={() => handleClick(false)}>Top WorldWide</button>
             </div>

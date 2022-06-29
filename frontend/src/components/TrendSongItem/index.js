@@ -32,6 +32,7 @@ function TrendSongItem(props) {
 
     return (
         <div className='mainDiv' style={{ backgroundImage: `url(${props.song.album['cover_medium']})` }}>
+            <div className='ttt'></div>
 
 
             <div className='mainLeft'>

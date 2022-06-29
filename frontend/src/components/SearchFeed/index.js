@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import SongItem from '../SongItem'
 import TrendSongItem from '../TrendSongItem'
+import CommentItem from '../CommentItem';
 
 
 
@@ -34,15 +35,36 @@ function SearchFeed(props) {
 
     return (
         <>
-            <div className='tWrap'>
-                {!isLoaded && (<div className='loader'><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>)}
-                {/* {isLoaded && (<h1>Results for: {window.location.href.split('/').pop().replaceAll('%20', ' ')}</h1>)} */}
-                {isLoaded && (<h1>Results for: {props.query}</h1>)}
-                {isLoaded && deezerObjects.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song={song} getSong={props.getSong}/>
-                })}
+            <div className='superWrap'>
+                <div className='tWrap'>
+                    {!isLoaded && (<div className='loader'><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>)}
+
+                    {isLoaded && (<h1>Results for: {props?.query}</h1>)}
+                    
+                    <div className='songHolddd'>
+                        {isLoaded && deezerObjects.data.map((song)=>{
+                            return <TrendSongItem key={song?.id} song={song} getSong={props?.getSong}/>
+                        })}
+                    </div>
+                </div>
+                <div className={props?.didSearch}></div>
+
+                <div className='sideBar'>
+                    <img src={props.mainSong?.cover} alt='' />
+                    <h1>"{props.mainSong?.name}"</h1>
+                    <h3>by {props.mainSong?.singer}</h3>
+
+                    <p>Comments:</p>
+                    <div className='commentHold'>
+                        {props.mainSong.comments?.map((c) => {
+                            return <CommentItem key={c.id} comment={c} />
+                        })}
+                    </div>
+
+
+                </div>
+
             </div>
-            <div className={props.didSearch}></div>
         </>
     );
 }

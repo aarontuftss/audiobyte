@@ -61,7 +61,19 @@ function SongItem(props) {
     return (
         <div className='mainDiv' style={{backgroundImage: `url(${props.song.image})`}}>
 
+            {isUser && (
+                <>
+                <div>
+                    <NavLink to={link} className='editLink'>Edit Song</NavLink>
+                    <button onClick={deleteSong} className='deleteB'>Delete</button>
+                </div>
+                </>
+            )}
+            {!isUser && (
+                <div></div>
+            )
 
+            }
 
             <div className='mainLeft'>
                 <h4>"{props.song.name}" by {props.song.User.username}</h4>
@@ -69,12 +81,6 @@ function SongItem(props) {
                 <img src={play} onClick={()=> setStorage(props.song)}/>
                 
 
-                {isUser && (
-                    <>
-                    <NavLink to={link} className='editLink'>Edit Song</NavLink>
-                    <button onClick={deleteSong} className='deleteB'>Delete</button>
-                    </>
-                )}
 
 
             </div>
@@ -91,8 +97,8 @@ function SongItem(props) {
                 <div className='placeComment'>
                     <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
                     <button onClick={postComment}>Comment</button>
-                </div>
-            </div> */}
+                    </div>
+                </div> */}
         </div>
     );
 }

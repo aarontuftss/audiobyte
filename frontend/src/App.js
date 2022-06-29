@@ -56,7 +56,6 @@ function App() {
   }, []);
 
   function refreshSearch(val){
-    setDidSearch(!didSearch)
     setQuery(val)
   }
 
@@ -89,8 +88,11 @@ function App() {
           <Route exact path="/trending">
             <TrendingSongs getSong={getSong}/>
           </Route>
-          <Route exact path="/search/:query">
+          {/* <Route exact path="/search/:query">
             <SearchFeed getSong={getSong} didSearch={didSearch} query={query}/>
+          </Route> */}
+          <Route exact path="/search">
+            <SearchFeed getSong={getSong} didSearch={didSearch} query={query} mainSong={mainSong} />
           </Route>
           <Route exact path="/*">
             <div className="loader">
