@@ -54,7 +54,7 @@ function Navigation({ isLoaded, feedChange, feed, refresh }) {
 
     useEffect(()=>{
         refresh(searchQ)
-        dispatch(deezerActions.getSearch(searchQ)).then(()=> history.push(`/search/${searchQ}`))
+        // dispatch(deezerActions.getSearch(searchQ)).then(()=> history.push(`/search/${searchQ}`))
         // history.push(`/search/${searchQ}`)
     }, [didClick])
 

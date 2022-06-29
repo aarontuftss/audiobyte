@@ -23,9 +23,9 @@ function TrendingSongs(props) {
     }, [dispatch]);
     
     
-    if (!sessionUser) return (
-        <Redirect to="/" />
-    );
+    // if (!sessionUser) return (
+    //     <Redirect to="/" />
+    // );
 
     return (
         <>

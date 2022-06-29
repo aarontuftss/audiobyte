@@ -7,12 +7,24 @@ import { Redirect, NavLink } from 'react-router-dom';
 import './splash.css';
 
 function Splash() {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(sessionActions.restoreUser())
+    //         .then(() => {
+    //             if (sessionUser) {
+    //                 // setShowPlayer(true)
+    //                 console.log('HI')
+    //             }
+    //         })
+    //         // .then(() => setIsLoaded(true));
+    // }, [dispatch]);
+
     const sessionUser = useSelector(state => state.session.user);
 
-    if (sessionUser) return (
-        <Redirect to="/home" />
-    );
+    // if (sessionUser?.id) return (
+    //     <Redirect to="/home" />
+    // );
 
     return (
         <div className='mainWrap'>

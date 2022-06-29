@@ -1,17 +1,21 @@
 .mainWrap{
     width:100%;
-    height: 100%;
+    /* height: 100%; */
+    height: calc(100vh - 155px);
+    overflow-y: hidden;
 
 }
 
 .imgDisplay{
     width: 100%;
-    height:700px;
+    /* height:700px; */
+    height:calc(100vh - 155px);
     background-image: url('./bg-main.jpeg');
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: hidden;
     /* justify-content: center; */
 }
 
@@ -59,4 +63,8 @@
 .authB3:hover{
     color: whitesmoke;
     background-color: #FF7700;
+}
+
+.rhap_container{
+    height: 100px;
 }
