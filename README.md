@@ -21,11 +21,13 @@ Comment, upload & make new connections!
 
 
 # Users can search & listen ANY song on major streaming platforms! 
-<img width="1280" alt="Screen Shot 2022-05-15 at 7 09 20 PM" src="https://user-images.githubusercontent.com/86862338/168503569-75cbae6a-acef-44c0-9d31-2127138cf926.png">
+<img width="1278" alt="Screen Shot 2022-06-29 at 4 12 17 PM" src="https://user-images.githubusercontent.com/86862338/176554613-fe1ffcd5-0332-4ee9-b2b5-e9bd9cfec144.png">
+
 
 
 # User upload feed with live comments
-<img width="1279" alt="Screen Shot 2022-05-15 at 7 10 25 PM" src="https://user-images.githubusercontent.com/86862338/168503647-5bb29528-275b-4eed-a7a4-f1d705414774.png">
+<img width="1278" alt="Screen Shot 2022-06-29 at 4 12 49 PM" src="https://user-images.githubusercontent.com/86862338/176554627-6f216d2a-7aa9-4269-9d7a-2d5e44e64019.png">
+
 
 
 ### AudioByte was built with
