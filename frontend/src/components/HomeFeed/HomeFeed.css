@@ -43,15 +43,39 @@ body{
 }
 
 .sideBar{
+    padding-top: 25px;
     width: 500px;
     height: calc(100vh - 155px);
     border-left: solid black 1px;
     position: sticky;
     top: 55px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.sideBar > img {
+    width: 250px;
+    height: 250px;
 }
 
 .superWrap{
     display: flex;
     flex-direction: row;
+}
+
+.commentHold{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.commentHold > * {
+    width: 100%;
 }

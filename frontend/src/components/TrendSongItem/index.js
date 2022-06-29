@@ -19,7 +19,7 @@ function TrendSongItem(props) {
 
     function setStorage(song) {
         const newS = {}
-        newS.cover = song.album['cover_small']
+        newS.cover = song.album['cover_medium']
         newS.musicSrc = song.preview
         newS.name = song.title
         newS.singer = song.artist.name

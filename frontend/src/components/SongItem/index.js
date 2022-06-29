@@ -52,6 +52,7 @@ function SongItem(props) {
         newS.musicSrc = song.songUrl
         newS.name = song.name
         newS.singer = song.User.username
+        newS.comments = [...song.Comments]
 
         localStorage.setItem('song', JSON.stringify(newS));
         props.getSong()

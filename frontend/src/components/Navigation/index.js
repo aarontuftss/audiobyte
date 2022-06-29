@@ -26,7 +26,10 @@ function Navigation({ isLoaded, feedChange, feed, refresh }) {
             password: 'password'
         }
         dispatch(sessionActions.login(demoData))
-        return <Redirect to='/home'/>
+        // return <Redirect to='/home'/>
+        .then(()=> {
+            history.push('/home')
+        })
     }
 
 

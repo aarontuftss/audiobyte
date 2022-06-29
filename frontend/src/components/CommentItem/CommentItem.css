@@ -10,7 +10,7 @@
     padding:0.5px;
     flex-direction:row;
     align-items:center;
-    width:80%;
+    width:100%;
     justify-content: center;
     background-color: #333;
     border-radius:5px;
@@ -18,7 +18,7 @@
 }
 
 .hi{
-    max-height: 30px;
+    /* max-height: 30px; */
     margin-bottom: 25px;
 }
 

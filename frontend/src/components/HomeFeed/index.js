@@ -10,6 +10,7 @@ import * as deezerActions from '../../store/deezer';
 
 
 import './HomeFeed.css';
+import CommentItem from '../CommentItem';
 
 function HomeFeed(props) {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ function HomeFeed(props) {
     if (!sessionUser) return (
         <Redirect to="/" />
     );
-    // console.log(songObjects.songs)
+    console.log(props.mainSong)
 
     return (
         <>
@@ -71,9 +72,20 @@ function HomeFeed(props) {
                 })}
             </div>
             <div className='sideBar'>
+                <img src={props.mainSong.cover} alt=''/>
+                <h1>"{props.mainSong.name}"</h1>
+                <h3>by {props.mainSong.singer}</h3>
+
+                <p>Comments:</p>
+                <div className='commentHold'>
+                    {props.mainSong.comments?.map((c)=> {
+                        return <CommentItem key={c.id} comment={c}  />
+                    })}
+                </div>
+
 
             </div>
-            
+
         </div>
         </>
     );

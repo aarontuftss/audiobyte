@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
@@ -78,7 +78,7 @@ function App() {
             <Splash />
           </Route>
           <Route exact path="/home">
-            <HomeFeed getSong={getSong} feed={feed}/>
+            <HomeFeed getSong={getSong} feed={feed} mainSong={mainSong}/>
           </Route>
           <Route exact path="/upload">
             <SongUpload />
@@ -89,8 +89,13 @@ function App() {
           <Route exact path="/trending">
             <TrendingSongs getSong={getSong}/>
           </Route>
-          <Route path="/search/:query">
+          <Route exact path="/search/:query">
             <SearchFeed getSong={getSong} didSearch={didSearch} query={query}/>
+          </Route>
+          <Route exact path="/*">
+            <div className="loader">
+                <h1>Page Not Found</h1>
+            </div>
           </Route>
         </Switch>
       )}
@@ -100,7 +105,6 @@ function App() {
         </>
       )}
       {isLoaded && showPlayer && (
-        // <ReactJKMusicPlayer audioLists={mainSong} autoPlay={false} toggleMode={false} mode='full' />
         <AudioPlayer src={mainSong.musicSrc} className='bottomPlayer'/>
       )}
     </>

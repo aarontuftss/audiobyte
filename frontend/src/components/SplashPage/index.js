@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 
 
 import './splash.css';
 
 function Splash() {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     // useEffect(() => {
     //     dispatch(sessionActions.restoreUser())
@@ -25,6 +26,10 @@ function Splash() {
     // if (sessionUser?.id) return (
     //     <Redirect to="/home" />
     // );
+
+    if (sessionUser) {
+        history.push('/home')
+    }
 
     return (
         <div className='mainWrap'>

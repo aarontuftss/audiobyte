@@ -28,9 +28,9 @@ function SearchFeed(props) {
         }
     }, []);
     
-    // if (!sessionUser) return (
-    //     <Redirect to="/" />
-    // );
+    if (!sessionUser) return (
+        <Redirect to="/" />
+    );
 
     return (
         <>

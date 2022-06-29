@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(true);
+    const history = useHistory()
 
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
-        window.location.assign("/")
+        history.push('/')
     };
 
 
