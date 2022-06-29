@@ -11,7 +11,7 @@ import * as deezerActions from '../../store/deezer';
 
 import './HomeFeed.css';
 
-function HomeFeed() {
+function HomeFeed(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const songObjects = useSelector((state) => state.songs);
@@ -38,6 +38,17 @@ function HomeFeed() {
         }
     }, [displayLocal]);
 
+    function handleFeed(){
+        const newF = window.sessionStorage.getItem('feed')
+        console.log(newF)
+    }
+
+    useEffect(() => {
+        handleFeed()
+        window.addEventListener('storage', handleFeed())
+    }, []);
+    
+
 
     let feedSelect;
     
@@ -48,20 +59,13 @@ function HomeFeed() {
 
     return (
         <>
-        <div className='feedSelector'>
-            {isLoaded && (
-                <>
-                <button className={b1} onClick={()=> setDisplayLocal(true)}>User Tracks</button>
-                <button className={b2} onClick={()=> setDisplayLocal(false)}>Top WorldWide</button>
-                </>
-            )}
-        </div>
+            {!isLoaded && (<div className='loader'><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>)}
         <div className='mainWrap'>
-            {isLoaded && displayLocal && songObjects.songs.map((song)=>{
-                return <SongItem key={song.id} song={song}/>
+            {isLoaded && props.feed === 'user' && songObjects.songs.map((song)=>{
+                return <SongItem key={song.id} song={song} getSong = {props.getSong}/>
             })}
-            {isLoaded && !displayLocal && deezerObjects.tracks.data.map((song)=>{
-                    return <TrendSongItem key={song.id} song = {song}></TrendSongItem>
+            {isLoaded && props.feed === 'top' && deezerObjects.tracks.data.map((song)=>{
+                return <TrendSongItem key={song.id} song={song} getSong={props.getSong}></TrendSongItem>
             })}
         </div>
         </>

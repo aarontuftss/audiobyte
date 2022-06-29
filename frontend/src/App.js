@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -12,20 +12,60 @@ import SongUpload from './components/SongUpload'
 import EditSong from './components/EditSong'
 import TrendingSongs from './components/TrendingSongs'
 import SearchFeed from './components/SearchFeed'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 function App() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showPlayer, setShowPlayer] = useState(true);
+  const [feed, setFeed] = useState('user');
+  const [query, setQuery] = useState('')
+  const [didSearch, setDidSearch] = useState(true)
+
+  function feedChange(val){
+    console.log(val)
+    setFeed(val)
+  }
+
+ 
+  
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreUser())
+    .then(()=> {
+      if(sessionUser) {
+        setShowPlayer(true)
+        console.log('HI')
+      }
+    })
+    .then(() => setIsLoaded(true));
   }, [dispatch]);
+    
+    const [mainSong, setMainSong] = useState('');
 
-  // const sessionUser = useSelector(state => state.session.user);
+    function getSong(){
+      const item = JSON.parse(localStorage.getItem('song'));
+      if (item) {
+        setMainSong(item)
+      }
+    }
 
-  // if (sessionUser) console.log('hi')
+  useEffect(() => {
+    getSong()
+  }, []);
+
+  function refreshSearch(val){
+    setDidSearch(!didSearch)
+    setQuery(val)
+  }
+
+  
+
+
   return (
     <>
-      <Navigation isLoaded={isLoaded} className='navBar'/>
+      <Navigation isLoaded={isLoaded} feedChange={feedChange} feed={feed} refresh={refreshSearch} className='navBar'/>
       {isLoaded && (
         <Switch>
           <Route exact path="/login">
@@ -38,7 +78,7 @@ function App() {
             <Splash />
           </Route>
           <Route exact path="/home">
-            <HomeFeed />
+            <HomeFeed getSong={getSong} feed={feed}/>
           </Route>
           <Route exact path="/upload">
             <SongUpload />
@@ -47,12 +87,21 @@ function App() {
             <EditSong />
           </Route>
           <Route exact path="/trending">
-            <TrendingSongs />
+            <TrendingSongs getSong={getSong}/>
           </Route>
-          <Route exact path="/search/:query">
-            <SearchFeed />
+          <Route path="/search/:query">
+            <SearchFeed getSong={getSong} didSearch={didSearch} query={query}/>
           </Route>
         </Switch>
+      )}
+      {!isLoaded && (
+        <>
+          <div className="loader"><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>
+        </>
+      )}
+      {isLoaded && showPlayer && (
+        // <ReactJKMusicPlayer audioLists={mainSong} autoPlay={false} toggleMode={false} mode='full' />
+        <AudioPlayer src={mainSong.musicSrc} className='bottomPlayer'/>
       )}
     </>
   );

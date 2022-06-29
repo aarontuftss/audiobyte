@@ -16,9 +16,22 @@ function TrendSongItem(props) {
     const isUser = (sessionUser.id === props.song.artistId)
     const [commentText, setCommentText] = useState('')
 
+    function setStorage(song) {
+        const newS = {}
+        newS.cover = song.album['cover_small']
+        newS.musicSrc = song.preview
+        newS.name = song.title
+        newS.singer = song.artist.name
+
+        localStorage.setItem('song', JSON.stringify(newS));
+        console.log(props)
+        props.getSong()
+    }
+
 
     return (
         <div className='mainDiv'>
+            <button onClick={()=> setStorage(props.song)}> click </button>
             <div className='mainLeft'>
                 <h2>"{props.song.title}" by {props.song.artist.name}</h2>
                 <div className='holder'>

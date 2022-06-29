@@ -1,17 +1,17 @@
-# soundcloud-clone
-## App Academy Solo Project - SoundTube
+# App Academy Solo Project - AudioByte
 
-SoundTube is a social music platform designed to share and stream music from artists all around the world.
-Leave you mark & get discovered on SoundTube.
+AudioByte is a social music platform designed to share and stream music from artists all around the world.
+Leave you mark & get discovered on AudioByte.
 Comment, upload & make new connections!
 
-<a href='https://sound-tube.herokuapp.com/'>Visit Live Demo</a>
+<a href='https://audiobyte.herokuapp.com/'>Visit Live Demo</a>
 
-<img width="1280" alt="Screen Shot 2022-05-10 at 10 10 15 AM" src="https://user-images.githubusercontent.com/86862338/167674050-a5ed219c-0a57-4b66-be89-e26c156a87d0.png">
+<img width="1280" alt="Screen Shot 2022-05-15 at 7 07 51 PM" src="https://user-images.githubusercontent.com/86862338/168503485-40b1c792-d8da-487e-b05b-df15ebc8d809.png">
 
 
 
-## SoundTube Allows Users To Upload, Share, and Discover New Music
+
+## AudioByte Allows Users To Upload, Share, and Discover New Music
 ### Some Key Features Include
 
 * Create, Update & Delete Comments on Tracks
@@ -20,9 +20,17 @@ Comment, upload & make new connections!
 * Log in , Sign up, and Demo User Capabilities
 
 
-### SoundTube was built with
+# Users can search & listen ANY song on major streaming platforms! 
+<img width="1280" alt="Screen Shot 2022-05-15 at 7 09 20 PM" src="https://user-images.githubusercontent.com/86862338/168503569-75cbae6a-acef-44c0-9d31-2127138cf926.png">
 
-* React.js
+
+# User upload feed with live comments
+<img width="1279" alt="Screen Shot 2022-05-15 at 7 10 25 PM" src="https://user-images.githubusercontent.com/86862338/168503647-5bb29528-275b-4eed-a7a4-f1d705414774.png">
+
+
+### AudioByte was built with
+
+* React
 * Redux
 * Javascript
 * PostgreSQL
@@ -37,7 +45,7 @@ Comment, upload & make new connections!
 
 ### Clone This Repository
 
-* git clone git@github.com:jonathontufts/soundcloud-clone.git
+* git clone git@github.com:jonathontufts/audiobyte.git
 
 ### NPM Install all Dependencies 
 
