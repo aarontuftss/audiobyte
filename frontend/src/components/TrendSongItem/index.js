@@ -30,19 +30,19 @@ function TrendSongItem(props) {
 
 
     return (
-        <div className='mainDiv'>
+        <div className='mainDiv' style={{ backgroundImage: `url(${props.song.album['cover_medium']})` }}>
             <button onClick={()=> setStorage(props.song)}> click </button>
             <div className='mainLeft'>
                 <h2>"{props.song.title}" by {props.song.artist.name}</h2>
                 <div className='holder'>
-                    <img src={props.song.album['cover_small']}></img>
-                    <AudioPlayer src={props.song.preview} className='audioPlayer'/>
+                    {/* <img src={props.song.album['cover_small']}></img> */}
+                    {/* <AudioPlayer src={props.song.preview} className='audioPlayer'/> */}
                 </div>
             </div>
-            <div className='mainRight'>
+            {/* <div className='mainRight'>
                 <h3>Album: {props.song.album.title}</h3>
                 <img src={props.song.album['cover_small']} alt='id'></img>
-                <h4>Presented by {props.song.artist.name}</h4>
+                <h4>Presented by {props.song.artist.name}</h4> */}
                 
                 {/* <div className='commentItem'>
                     {props.song.Comments.map((comment)=>{
@@ -53,7 +53,7 @@ function TrendSongItem(props) {
                     <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
                     <button onClick={postComment}>Comment</button>
                 </div> */}
-            </div>
+            {/* </div> */}
         </div>
     );
 }

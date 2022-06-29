@@ -57,22 +57,30 @@ function SongItem(props) {
     }
 
     return (
-        <div className='mainDiv'>
-            <button onClick={()=> setStorage(props.song)}>click</button>
+        <div className='mainDiv' style={{backgroundImage: `url(${props.song.image})`}}>
+
+
+
             <div className='mainLeft'>
                 <h2>"{props.song.name}" by {props.song.User.username}</h2>
-                <div className='holder'>
-                    <img src={props.song.image} alt={props.song.name}></img>
-                    <AudioPlayer src={props.song.songUrl} className='audioPlayer'/>
-                </div>
+
+                <button onClick={()=> setStorage(props.song)}>click</button>
+                
+
                 {isUser && (
                     <>
                     <NavLink to={link} className='editLink'>Edit Song</NavLink>
                     <button onClick={deleteSong} className='deleteB'>Delete</button>
                     </>
                 )}
+
+
             </div>
-            <div className='mainRight'>
+
+
+
+
+            {/* <div className='mainRight'>
                 <div className='commentItem'>
                     {props.song.Comments.map((comment)=>{
                         return <CommentItem key={comment.id} comment={comment} className='comment'/>
@@ -82,7 +90,7 @@ function SongItem(props) {
                     <input type='text' value={commentText} onChange={(e) => setCommentText(e.target.value)}></input>
                     <button onClick={postComment}>Comment</button>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

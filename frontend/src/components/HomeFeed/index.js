@@ -60,7 +60,7 @@ function HomeFeed(props) {
     return (
         <>
             {!isLoaded && (<div className='loader'><img src='https://i.pinimg.com/originals/4f/77/b1/4f77b154221b0a889fdd00b68709dfb6.gif'></img></div>)}
-        <div className='mainWrap'>
+        <div className='mainWrap1'>
             {isLoaded && props.feed === 'user' && songObjects.songs.map((song)=>{
                 return <SongItem key={song.id} song={song} getSong = {props.getSong}/>
             })}
