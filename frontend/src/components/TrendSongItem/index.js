@@ -7,6 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { NavLink } from 'react-router-dom';
 import CommentItem from '../CommentItem'
 import * as commentActions from '../../store/comments';
+import play from '../play.png'
 
 // import './SongItem.css'
 
@@ -31,14 +32,18 @@ function TrendSongItem(props) {
 
     return (
         <div className='mainDiv' style={{ backgroundImage: `url(${props.song.album['cover_medium']})` }}>
-            <button onClick={()=> setStorage(props.song)}> click </button>
+
+
             <div className='mainLeft'>
-                <h2>"{props.song.title}" by {props.song.artist.name}</h2>
-                <div className='holder'>
-                    {/* <img src={props.song.album['cover_small']}></img> */}
-                    {/* <AudioPlayer src={props.song.preview} className='audioPlayer'/> */}
-                </div>
+
+                <h4>"{props.song.title}" by {props.song.artist.name}</h4>
+
+                <img src={play} onClick={()=> setStorage(props.song)} />
+
             </div>
+
+
+
             {/* <div className='mainRight'>
                 <h3>Album: {props.song.album.title}</h3>
                 <img src={props.song.album['cover_small']} alt='id'></img>

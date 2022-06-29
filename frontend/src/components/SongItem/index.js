@@ -10,6 +10,7 @@ import * as commentActions from '../../store/comments';
 import WaveFormLocal from '../WaveFormLocal'
 
 import './SongItem.css'
+import play from '../play.png'
 
 function SongItem(props) {
     const dispatch = useDispatch();
@@ -62,9 +63,9 @@ function SongItem(props) {
 
 
             <div className='mainLeft'>
-                <h2>"{props.song.name}" by {props.song.User.username}</h2>
+                <h4>"{props.song.name}" by {props.song.User.username}</h4>
 
-                <button onClick={()=> setStorage(props.song)}>click</button>
+                <img src={play} onClick={()=> setStorage(props.song)}/>
                 
 
                 {isUser && (
