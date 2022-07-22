@@ -11,13 +11,31 @@ function CommentItem(props) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const isUser = (sessionUser.id === props.comment.userId)
+    const songObjects = useSelector((state) => state.songs);
     const [toEdit, setToEdit] = useState(false)
     const [commentText, setCommentText] = useState('')
 
+    const [ccommentText, setCcommentText] = useState(props.comment.text)
+
     const deleteComment = async() => {
-        await dispatch(commentActions.deleteComment(props.comment.id))
-        // window.location.reload()
-        .then(()=> dispatch(songActions.loadSongs()))
+        let did = await dispatch(commentActions.deleteComment(props.comment.id))
+        if (await did.ok){
+    
+            let songg = props.mainSong
+
+            songg.comments = songg.comments.filter((c)=> {
+                return c.id !== props.comment.id
+            })
+    
+            localStorage.setItem('song', JSON.stringify(songg))
+            await dispatch(songActions.loadSongs())
+            .then(()=> {
+                props.getSong()
+            })
+        }
+        
+
+
     }
 
     const showModal = () => {
@@ -33,20 +51,40 @@ function CommentItem(props) {
             window.alert('Comment Cannot Be Longer Than 100 Characters')
             return
         }
+
+        setCcommentText(commentText)
+
         const data = {
             text: commentText,
             id: props.comment.id
         }
+        
         setCommentText('')
         setToEdit(!toEdit)
         await dispatch(commentActions.updateComment(data))
+        .then(()=> {
+            props.comment.text = data.text
+            let songg = songObjects.songs.filter((s) => s.id === props.mainSong.id)[0]
+
+            const newS = {}
+            newS.cover = songg.image
+            newS.musicSrc = songg.songUrl
+            newS.name = songg.name
+            newS.singer = songg.User.username
+            newS.comments = [...songg.Comments]
+            newS.id = songg.id
+
+            localStorage.setItem('song', JSON.stringify(newS));
+
+            props.getSong()
+        })
         await dispatch(songActions.loadSongs())
     }
 
     return (
         <div className='hi'>
             <div className='c-box'>
-                <p className='c-text'>{props.comment.text}</p>
+                <p className='c-text'>{ccommentText}</p>
                 {isUser &&(
                     <>
                     <button onClick={showModal}>Edit</button>

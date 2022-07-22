@@ -6,7 +6,6 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from './components/SplashPage'
-import './index.css'
 import HomeFeed from './components/HomeFeed'
 import SongUpload from './components/SongUpload'
 import EditSong from './components/EditSong'
@@ -14,6 +13,7 @@ import TrendingSongs from './components/TrendingSongs'
 import SearchFeed from './components/SearchFeed'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import './index.css'
 
 function App() {
   const dispatch = useDispatch();
@@ -92,6 +92,9 @@ function App() {
             <SearchFeed getSong={getSong} didSearch={didSearch} query={query}/>
           </Route> */}
           <Route exact path="/search">
+            {query === '' && (
+              <Redirect to={'/home'} />
+            )}
             <SearchFeed getSong={getSong} didSearch={didSearch} query={query} mainSong={mainSong} />
           </Route>
           <Route exact path="/*">

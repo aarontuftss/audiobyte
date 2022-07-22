@@ -46,17 +46,18 @@ function SongItem(props) {
         .then(()=> dispatch(songActions.loadSongs()))
     }
 
-    function setStorage(song){
-        const newS = {}
-        newS.cover = song.image
-        newS.musicSrc = song.songUrl
-        newS.name = song.name
-        newS.singer = song.User.username
-        newS.comments = [...song.Comments]
+    // function setStorage(song){
+    //     const newS = {}
+    //     newS.cover = song.image
+    //     newS.musicSrc = song.songUrl
+    //     newS.name = song.name
+    //     newS.singer = song.User.username
+    //     newS.comments = [...song.Comments]
+    //     newS.id = song.id
 
-        localStorage.setItem('song', JSON.stringify(newS));
-        props.getSong()
-    }
+    //     localStorage.setItem('song', JSON.stringify(newS));
+    //     props.getSong()
+    // }
 
     return (
         <div className='mainDiv' style={{backgroundImage: `url(${props.song.image})`}}>
@@ -78,7 +79,7 @@ function SongItem(props) {
             <div className='mainLeft'>
                 <h4>"{props.song.name}" by {props.song.User.username}</h4>
 
-                <img src={play} onClick={()=> setStorage(props.song)}/>
+                <img src={play} onClick={()=> props.setStorage(props.song)}/>
                 
 
 

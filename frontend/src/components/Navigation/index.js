@@ -67,10 +67,12 @@ function Navigation({ isLoaded, feedChange, feed, refresh }) {
     function handleClick(val){
         if(val){
             feedChange('user');
+            history.push('/home')
             setb1('bOn');
             setb2('bOff')
         }else{
             feedChange('top'); 
+            history.push('/home')
             setb1('bOn'); 
             setb2('bOff')
         }

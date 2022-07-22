@@ -68,4 +68,23 @@
 
 .rhap_container{
     height: 100px;
+    background-color: black !important;
+}
+
+.rhap_main-controls-button svg {
+    color: whitesmoke;
+}
+
+.rhap_progress-filled,
+.rhap_progress-indicator {
+    background-color: whitesmoke !important;
+}
+
+.rhap_button-clear.rhap_volume-button {
+    color: whitesmoke !important;
+}
+
+.rhap_volume-bar,
+.rhap_volume-indicator {
+    background-color: whitesmoke;
 }

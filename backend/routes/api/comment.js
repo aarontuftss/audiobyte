@@ -22,6 +22,17 @@ router.get(
     }),
 );
 
+router.get(
+    '/',
+    asyncHandler(async (req, res) => {
+        const songComments = await Comment.findAll();
+
+        return res.json({
+            songComments,
+        });
+    }),
+);
+
 router.put(
     `/:id(\\d+)`,
     asyncHandler(async (req, res) => {

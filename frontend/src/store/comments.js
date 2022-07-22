@@ -1,5 +1,7 @@
 import { csrfFetch } from './csrf';
 
+import { loadSongs } from './songs';
+
 const GET_COMMENTS = 'commenta/getComments'
 const CREATE_COMMENT  = 'commenta/create'
 // const UPDATE_SONG = 'songs/update'
@@ -7,7 +9,8 @@ const CREATE_COMMENT  = 'commenta/create'
 
 const initialState = {}
 
-const load_comments = (comments) => {
+const load_comments = (comments1) => {
+    let comments = comments1.songComments
     return {
         type: GET_COMMENTS,
         comments
@@ -30,8 +33,22 @@ export const createComment = ({text, userId, songId}) => async(dispatch) => {
             songId
         })
     })
+    if (response.ok){
+       return 
+    }
 
 }
+
+export const loadComments = () => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/`, {
+        method: 'GET'
+    })
+    if (response.ok) {
+        const comments = await response.json();
+        await dispatch(load_comments(comments))
+    }
+}
+
 
 export const updateComment = ({text, userId, songId, id}) => async(dispatch) => {
     const response = await csrfFetch(`/api/comments/${id}`, {
@@ -42,18 +59,27 @@ export const updateComment = ({text, userId, songId, id}) => async(dispatch) => 
             songId
         })
     })
+    if (response.ok) {
+        // const comments = await response.json();
+        await dispatch(loadSongs())
+    }
 }
 
 export const deleteComment = (id) => async (dispatch) =>{
     const response = await csrfFetch(`/api/comments/${id}`, {
         method: 'DELETE',
     })
+
+    if (response.ok){
+        await dispatch(loadSongs())
+        return {ok: 'yes'}
+    }
 }
 
 const commentReducer = (state = initialState, action) => {
     switch (action.type){
         case GET_COMMENTS:
-            let newState = {...action.songs};
+            let newState = [...action.comments];
             return newState
         default:
             return state
